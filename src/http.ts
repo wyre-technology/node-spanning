@@ -1,11 +1,12 @@
 /**
  * HTTP layer for the Spanning Cloud Backup API.
  *
- * Authentication uses two custom headers:
- *   X-Spanning-Admin: <admin email>
- *   X-Spanning-Authorization: Bearer <api token>
+ * Authentication uses HTTP Basic auth per the public Spanning O365
+ * OpenAPI spec (http://o365-docs.spanningbackup.com/swagger/json):
+ *   Authorization: Basic base64(<adminEmail>:<apiToken>)
  *
- * Both must match the pair on file or the API returns a generic 401.
+ * The admin email and API token are pair-bound — both must match the
+ * pair on file in the Spanning admin console or the API returns 401.
  *
  * Pagination is cursor-based (see {@link ./pagination.ts}).
  */
@@ -74,10 +75,12 @@ export class HttpClient {
   ): Promise<T> {
     await this.rateLimiter.waitForSlot();
 
+    const basicAuth = Buffer.from(
+      `${this.config.adminEmail}:${this.config.apiToken}`
+    ).toString('base64');
     const headers: Record<string, string> = {
       Accept: 'application/json',
-      'X-Spanning-Admin': this.config.adminEmail,
-      'X-Spanning-Authorization': `Bearer ${this.config.apiToken}`,
+      Authorization: `Basic ${basicAuth}`,
     };
     if (bodyString) headers['Content-Type'] = 'application/json';
 

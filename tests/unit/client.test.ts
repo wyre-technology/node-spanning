@@ -56,11 +56,11 @@ describe('SpanningClient', () => {
     expect(page.items[0]?.id).toMatch(/^[A-Za-z0-9]{15,18}$/);
   });
 
-  it('sends X-Spanning-Admin and X-Spanning-Authorization: Bearer headers', async () => {
+  it('sends HTTP Basic auth with adminEmail:apiToken', async () => {
     const c = makeClient();
     await c.users.list();
-    expect(recordedHeaders.last['x-spanning-admin']).toBe('admin@example.com');
-    expect(recordedHeaders.last['x-spanning-authorization']).toBe('Bearer test-token');
+    const expected = `Basic ${Buffer.from('admin@example.com:test-token').toString('base64')}`;
+    expect(recordedHeaders.last['authorization']).toBe(expected);
   });
 
   it('lists users (single page)', async () => {
