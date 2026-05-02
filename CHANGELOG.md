@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/wyre-technology/node-spanning/compare/v1.0.0...v1.0.1) (2026-05-02)
+
+
+### Bug Fixes
+
+* switch auth from custom X-Spanning-* headers to HTTP Basic ([606a9f1](https://github.com/wyre-technology/node-spanning/commit/606a9f16862bb0b7bd90d1e37d6628a48e44a231))
+
 # 1.0.0 (2026-05-01)
 
 
