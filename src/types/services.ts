@@ -10,7 +10,8 @@ export type SpanningServiceName =
   | 'contacts'
   | 'sites'
   | 'teams'
-  | string;
+  // eslint-disable-next-line @typescript-eslint/ban-types -- (string & {}) preserves literal autocomplete
+  | (string & {});
 
 export interface SpanningService {
   name: SpanningServiceName;
