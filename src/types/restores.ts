@@ -8,7 +8,8 @@ export type RestoreStatus =
   | 'completed'
   | 'failed'
   | 'cancelled'
-  | string;
+  // eslint-disable-next-line @typescript-eslint/ban-types -- (string & {}) preserves literal autocomplete
+  | (string & {});
 
 /** Terminal statuses for a restore — polling stops here. */
 export const TERMINAL_RESTORE_STATUSES: ReadonlyArray<RestoreStatus> = [

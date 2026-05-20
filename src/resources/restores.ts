@@ -84,6 +84,7 @@ export class RestoresResource {
     const sleep = options.sleep ?? ((ms) => new Promise<void>((r) => setTimeout(r, ms)));
     const start = now();
 
+    // eslint-disable-next-line no-constant-condition -- intentional polling loop; exits via return/throw below
     while (true) {
       const restore = await this.get(restoreId);
       if (isTerminal(restore.status)) return restore;
