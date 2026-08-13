@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/wyre-technology/node-spanning/compare/v1.0.2...v1.0.3) (2026-08-13)
+
+
+### Bug Fixes
+
+* **deps:** re-pin typescript to ^6.0.3 + ignoreDeprecations, add explicit types:node ([#38](https://github.com/wyre-technology/node-spanning/issues/38)) ([30ca411](https://github.com/wyre-technology/node-spanning/commit/30ca4111337edffa445be203d2d51103e66e70fe)), closes [node-kaseya-quote-manager#7](https://github.com/node-kaseya-quote-manager/issues/7) [blackpoint-mcp#44](https://github.com/blackpoint-mcp/issues/44)
+
 ## [1.0.2](https://github.com/wyre-technology/node-spanning/compare/v1.0.1...v1.0.2) (2026-05-20)
 
 
